@@ -68,8 +68,8 @@ class RegisterController extends Controller
             'password_confirmation' => 'required',
         ]);
 
-        $p_picture = time().'.'.$request->image->extension();  
-        $request->image->move(public_path('images'), $p_picture);
+        $p_picture = time().'.'.$request->p_picture->extension();  
+        $request->p_picture->move(public_path('images'), $p_picture);
 
         $user = new User;
         $user->role_name    = $request->role_name;
