@@ -48,10 +48,10 @@
                             @foreach ($data as $key => $item)
                                 <tr>
                                     <td class="id">{{ ++$key }}</td>
-                                    <td class="name">{{ $item->name }}</td>
+                                    <td class="name">{{ $item->full_name }}</td>
                                     <td class="name">
                                         <div class="avatar avatar-xl">
-                                            <img src="{{ URL::to('/images/'. $item->avatar) }}" alt="{{ $item->avatar }}">
+                                            <img src="{{ URL::to('/images/'. $item->p_picture) }}" alt="{{ $item->p_picture }}">
                                         </div>
                                     </td>
                                     @if($item->status =='Active')

@@ -57,7 +57,7 @@
                                         <div class="form-group has-icon-left">
                                             <div class="position-relative">
                                                 <input type="text" class="form-control"
-                                                    placeholder="Name" id="first-name-icon" name="fullName" value="{{ $data[0]->name }}">
+                                                    placeholder="Full Name" id="first-name-icon" name="full_name" value="{{ $data[0]->full_name }}">
                                                 <div class="form-control-icon">
                                                     <i class="bi bi-person"></i>
                                                 </div>
