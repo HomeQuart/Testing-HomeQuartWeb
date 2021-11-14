@@ -2,9 +2,9 @@
     <div class="sidebar-wrapper active" style="background-color:#b2d3ec">
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
-                <div class="logo">
+                {{-- <div class="logo">
                     <a href="{{ route('home') }}"><img src="{{ URL::to('assets/images/logo/logo.png') }}" alt="Logo" srcset=""></a>
-                </div>
+                </div> --}}
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
@@ -23,25 +23,25 @@
                     <div class="card-body">
                         <div class="badges">
                             @if (Auth::user()->role_name=='Admin')
-                            <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                            <span>Name: <span class="fw-bolder">{{ Auth::user()->full_name }}</span></span>
                             <hr>
                             <span>Role Name:</span>
                             <span class="badge bg-success">Admin</span>
                             @endif
                             @if (Auth::user()->role_name=='Doctor')
-                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                                <span>Name: <span class="fw-bolder">{{ Auth::user()->full_name }}</span></span>
                                 <hr>
                                 <span>Role Name:</span>
                                 <span class="badge bg-info">Doctor</span>
                             @endif
                             @if (Auth::user()->role_name=='BHW')
-                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                                <span>Name: <span class="fw-bolder">{{ Auth::user()->full_name }}</span></span>
                                 <hr>
                                 <span>Role Name:</span>
                                 <span class="badge bg-info">Barangay Health Worker</span>
                             @endif
                             @if (Auth::user()->role_name=='Patient')
-                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                                <span>Name: <span class="fw-bolder">{{ Auth::user()->full_name }}</span></span>
                                 <hr>
                                 <span>Role Name:</span>
                                 <span class="badge bg-warning">Quarantine Patient</span>
@@ -95,11 +95,11 @@
                     <li class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-hexagon-fill"></i>
-                            <span>Patient Accounts Management</span>
+                            <span>Patient Pending Accounts </span>
                         </a>
                         <ul class="submenu">
                             <li class="submenu-item">
-                                <a href="{{ route('pendingaccounts') }}">Pending Accounts</a>
+                                <a href="{{ route('pendingaccounts') }}">Manage Pending Accounts</a>
                             </li>
                         </ul>
                     </li>
@@ -110,13 +110,13 @@
                         </a>
                         <ul class="submenu">
                             <li class="submenu-item">
-                                <a href="{{ route('userManagement2') }}">Patient Information</a>
+                                <a href="{{ route('activeaccounts') }}">Patient Information</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#">Patient Under Quarantine</a>
+                                <a href="{{ route('underQuarantine') }}">Patient Under Quarantine</a>
                             </li>
                             <li class="submenu-item">
-                                <a href="#">Patient Done Quarantine</a>
+                                <a href="{{ route('doneQuarantine') }}">Patient Done Quarantine</a>
                             </li>
                         </ul>
                     </li>

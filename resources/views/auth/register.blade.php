@@ -6,23 +6,21 @@
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
                     <div>
-                        <a href="index.html"><img src="assets/images/logo/logo.png" alt="Logo" width="100%"></a>
                     </div>
                     <br><br>
                     <center>
-                    <h3>Sign Up</h3>
-                    <p>Register your credentials.</p>
+                    <h1>Sign Up</h1>
+                    <h4>Register your credentials.</h4>
                     </center>
                     <br>
                     
-
                     <form method="POST" action="{{ route('register') }}" class="md-float-material" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group position-relative has-icon-left mb-4">
                             <fieldset class="form-group">
                                 <select class="form-select @error('role_name') is-invalid @enderror" name="role_name" id="role_name">
-                                    <option selected value="Admin">Admin</option>
+                                    <option selected value="Patient">Patient</option>
                                 </select>
                                 <div class="form-control-icon">
                                     <i class="bi bi-exclude"></i>
@@ -141,7 +139,7 @@
                         <div class="form-group position-relative has-icon-left mb-4">
                             <fieldset class="form-group">
                                 <select class="form-select @error('status') is-invalid @enderror" name="status" id="status">
-                                    <option selected value="Active">Active</option>
+                                    <option selected value="Disable">Waiting for the Barangay Health Worker Approval</option>
                                 </select>
                                 <div class="form-control-icon">
                                     <i class="bi bi-exclude"></i>
@@ -194,8 +192,8 @@
             </div>
             <div class="col-lg-7 d-none d-lg-block">
                 <div id="auth-right">
-                    <div class="col-md-5"><br><br><br><br><br><br><br><br><br><br><br><br>
-                        <img src="assets/images/bg2.png" width="230%">
+                    <div class="col-md-5">
+                        <img src="assets/images/signup_background.png" width="240%">
                     </div>
                 </div>
             </div>

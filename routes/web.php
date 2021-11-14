@@ -74,6 +74,9 @@ Route::post('profile_user/store', [App\Http\Controllers\UserManagementController
 
 // ----------------------------- user userManagement -----------------------//
 Route::get('userManagement', [App\Http\Controllers\UserManagementController::class, 'index'])->middleware('auth')->name('userManagement');
+
+
+//--------------------------------quarantine patient--------------------------//
 Route::get('sendReport', [App\Http\Controllers\UserManagementController::class, 'sendReport'])->middleware('auth')->name('sendReport');
 Route::get('contactHotlines', [App\Http\Controllers\UserManagementController::class, 'contactHotlines'])->middleware('auth')->name('contactHotlines');
 Route::get('temperatureProgress', [App\Http\Controllers\UserManagementController::class, 'temperatureProgress'])->middleware('auth')->name('temperatureProgress');
@@ -83,6 +86,18 @@ Route::get('consultations', [App\Http\Controllers\UserManagementController::clas
 //-----------------------------brgy healthworker-------------------------------//
 Route::get('pendingaccounts', [App\Http\Controllers\UserManagementController::class, 'pendingaccounts'])->middleware('auth')->name('pendingaccounts');
 Route::get('pending/view/detail/{id}', [App\Http\Controllers\UserManagementController::class, 'viewPendingDetail'])->middleware('auth');
+Route::get('activeaccounts', [App\Http\Controllers\UserManagementController::class, 'activeaccounts'])->middleware('auth')->name('activeaccounts');
+Route::get('sendReport/Account/{id}', [App\Http\Controllers\UserManagementController::class, 'sendReportAccount'])->middleware('auth');
+Route::get('underQuarantine', [App\Http\Controllers\UserManagementController::class, 'underQuarantine'])->middleware('auth')->name('underQuarantine');
+Route::get('doneQuarantine', [App\Http\Controllers\UserManagementController::class, 'doneQuarantine'])->middleware('auth')->name('doneQuarantine');
+Route::post('activate', [App\Http\Controllers\UserManagementController::class, 'activate'])->name('activate');
+
+
+//------------------------------doctor -------------------------------------//
+Route::get('patientList', [App\Http\Controllers\UserManagementController::class, 'patientList'])->middleware('auth')->name('patientList');
+Route::get('addMedicine', [App\Http\Controllers\UserManagementController::class, 'addMedicine'])->middleware('auth')->name('addMedicine');
+Route::get('reportList', [App\Http\Controllers\UserManagementController::class, 'reportList'])->middleware('auth')->name('reportList');
+Route::get('quarantineInformation/{id}', [App\Http\Controllers\UserManagementController::class, 'quarantineInformation'])->middleware('auth');
 
 Route::get('userManagement2', [App\Http\Controllers\UserManagementController::class, 'index2'])->middleware('auth')->name('userManagement2');
 Route::get('user/add/new', [App\Http\Controllers\UserManagementController::class, 'addNewUser'])->middleware('auth')->name('user/add/new');

@@ -70,7 +70,7 @@ class LoginController extends Controller
 
         $activityLog = [
 
-            'name'   => $email,
+            'name'        => $email,
             'email'       => $email,
             'description' => 'log in',
             'date_time'   => $todayDate,

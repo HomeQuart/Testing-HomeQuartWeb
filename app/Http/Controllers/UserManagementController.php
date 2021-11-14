@@ -19,9 +19,10 @@ class UserManagementController extends Controller
     public function index()
     {
 
-        //Comment france
+        //Comment ko balik
         //Comment Frank
         //Comment sa pinakagwapa 
+
         if (Auth::user()->role_name=='Admin')
         {
             $data = DB::table('users')->get();
@@ -97,7 +98,7 @@ class UserManagementController extends Controller
     //bhw view details of pending accoutn
     public function viewPendingDetail($id)
     {  
-        if (Auth::user()->role_name=='BHW')
+        if(Auth::user()->role_name=='BHW')
         {
             $data = DB::table('users')->where('id',$id)->get();
             $roleName = DB::table('role_type_users')->get();
@@ -109,6 +110,197 @@ class UserManagementController extends Controller
             return redirect()->route('home');
         }
     }
+
+    // bhw activate accounts
+    public function activate(Request $request)
+    {
+        $id                 = $request->id;
+        $role_name          = $request->role_name;
+        $full_name          = $request->full_name;
+        $age                = $request->age;
+        $gender             = $request->gender;
+        $contactno          = $request->contactno;
+        $address            = $request->address;
+        $contact_per        = $request->contact_per;
+        $place_isolation    = $request->place_isolation;
+        $status             = $request->status;
+        $email              = $request->email;
+
+        $dt       = Carbon::now();
+        $todayDate = $dt->toDayDateTimeString();
+        
+        $old_image = User::find($id);
+
+        $p_picture = $request->hidden_image;
+        $image = $request->file('image');
+
+        if($old_image->avatar=='photo_defaults.jpg')
+        {
+            if($image != '')
+            {
+                $p_picture = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images'), $p_picture);
+            }
+        }
+        else{
+            
+            if($image != '')
+            {
+                $p_picture = rand() . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('images'), $p_picture);
+                unlink('images/'.$old_image->p_picture);
+            }
+        }
+        
+        
+        $update = [
+
+            'id'                => $id,
+            'role_name'         => $role_name,
+            'full_name'         => $full_name,
+            'age'               => $age,
+            'gender'            => $gender,
+            'contactno'         => $contactno,
+            'p_picture'         => $p_picture,
+            'address'           => $address,
+            'contact_per'       => $contact_per,
+            'place_isolation'   => $place_isolation,
+            'status'            => $status,
+            'email'             => $email,
+        ];
+
+        $activityLog = [
+
+            'user_name'    => $full_name,
+            'email'        => $email,
+            'phone_number' => $contactno,
+            'status'       => $status,
+            'role_name'    => $role_name,
+            'modify_user'  => 'Update',
+            'date_time'    => $todayDate,
+        ];
+
+        DB::table('user_activity_logs')->insert($activityLog);
+        User::where('id',$request->id)->update($update);
+        Toastr::success('Patient updated successfully :)','Success');
+        return redirect()->route('userManagement');
+    }
+
+
+    //bhw view list of active accounts
+    public function activeaccounts()
+    {
+        if(Auth::user()->role_name=='BHW')
+        {
+            $data = DB::table('users')->where('role_name', '=', 'Patient')->where('status','=','Active')->get();
+            return view('bhwmodule.active_accounts',compact('data'));
+        }
+        else
+        {
+            return redirect()->route('home');
+        }
+    }
+
+
+    //bhw can send report as a patient
+    public function sendReportAccount()
+    {
+        if (Auth::user()->role_name=='BHW')
+       {
+           $data = DB::table('users')->where('role_name', '=', 'Patient')->where('status','=','Active')->get();
+           return view('bhwmodule.sendReport',compact('data'));
+       }
+       else
+       {
+           return redirect()->route('home');
+       }
+   }
+
+
+   //bhw view list of patient under quarantine
+   public function underQuarantine()
+   {
+       if(Auth::user()->role_name=='BHW')
+       {
+           $data = DB::table('users')->where('role_name', '=', 'Patient')->where('status','=','Active')->get();
+           return view('bhwmodule.under_quarantine',compact('data'));
+       }
+       else
+       {
+           return redirect()->route('home');
+       }
+   }
+
+   //bhw view list of patient done quarantine
+   public function doneQuarantine()
+   {
+       if(Auth::user()->role_name=='BHW')
+       {
+           $data = DB::table('users')->where('role_name', '=', 'Patient')->where('status','=','Done')->get();
+           return view('bhwmodule.done_quarantine',compact('data'));
+       }
+       else
+       {
+           return redirect()->route('home');
+       }
+   }
+
+
+   //doctor see patient list
+   public function patientList()
+   {
+       if(Auth::user()->role_name=='Doctor')
+       {
+           $data = DB::table('users')->where('role_name', '=', 'Patient')->where('status','=','Active')->get();
+           return view('doctormodule.patient_list',compact('data'));
+       }
+       else
+       {
+           return redirect()->route('home');
+       }
+   }
+
+   //doctor add medicine
+   public function addMedicine()
+   {
+       if(Auth::user()->role_name=='Doctor')
+       {
+           return view('doctormodule.add_medicine');
+       }
+       else
+       {
+           return redirect()->route('home');
+       }
+   }
+
+   //doctor view report list
+   public function reportList()
+   {
+       if(Auth::user()->role_name=='Doctor')
+       {
+           return view('doctormodule.report_list');
+       }
+       else
+       {
+           return redirect()->route('home');
+       }
+   }
+
+   //doctor view patient quarantine information
+   public function quarantineInformation($id)
+    {  
+        if(Auth::user()->role_name=='Doctor')
+        {
+            $data = DB::table('users')->where('role_name', '=', 'Patient')->where('status','=','Active')->get();
+            return view('doctormodule.quarantine_information',compact('data'));
+        }
+        else
+        {
+            return redirect()->route('home');
+        }
+    }
+
+
 
     // view detail 
     public function viewDetail($id)
@@ -177,9 +369,8 @@ class UserManagementController extends Controller
             'password_confirmation' => 'required',
         ]);
 
-
-        $p_picture = time().'.'.$request->image->extension();  
-        $request->image->move(public_path('images'), $p_picture);
+        $p_picture = time().'.'.$request->p_picture->extension();  
+        $request->p_picture->move(public_path('images'), $p_picture);
 
         $user = new User;
         $user->role_name    = $request->role_name;
@@ -238,7 +429,7 @@ class UserManagementController extends Controller
             {
                 $p_picture = rand() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('images'), $p_picture);
-                unlink('images/'.$old_image->avatar);
+                unlink('images/'.$old_image->p_picture);
             }
         }
         

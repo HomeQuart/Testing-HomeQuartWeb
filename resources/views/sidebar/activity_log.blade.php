@@ -2,9 +2,9 @@
     <div class="sidebar-wrapper active" style="background-color:#b2d3ec">
         <div class="sidebar-header">
             <div class="d-flex justify-content-between">
-                <div class="logo">
+                {{-- <div class="logo">
                     <a href="{{ route('home') }}"><img src="{{ URL::to('assets/images/logo/logo.png') }}" alt="Logo" srcset=""></a>
-                </div>
+                </div> --}}
                 <div class="toggler">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
@@ -23,25 +23,25 @@
                     <div class="card-body">
                         <div class="badges">
                             @if (Auth::user()->role_name=='Admin')
-                            <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                            <span>Name: <span class="fw-bolder">{{ Auth::user()->full_name }}</span></span>
                             <hr>
                             <span>Role Name:</span>
                             <span class="badge bg-success">Admin</span>
                             @endif
                             @if (Auth::user()->role_name=='Doctor')
-                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                                <span>Name: <span class="fw-bolder">{{ Auth::user()->full_name }}</span></span>
                                 <hr>
                                 <span>Role Name:</span>
                                 <span class="badge bg-info">Doctor</span>
                             @endif
                             @if (Auth::user()->role_name=='BHW')
-                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                                <span>Name: <span class="fw-bolder">{{ Auth::user()->full_name }}</span></span>
                                 <hr>
                                 <span>Role Name:</span>
                                 <span class="badge bg-info">Barangay Health Worker</span>
                             @endif
                             @if (Auth::user()->role_name=='Patient')
-                                <span>Name: <span class="fw-bolder">{{ Auth::user()->name }}</span></span>
+                                <span>Name: <span class="fw-bolder">{{ Auth::user()->full_name }}</span></span>
                                 <hr>
                                 <span>Role Name:</span>
                                 <span class="badge bg-warning">Quarantine Patient</span>

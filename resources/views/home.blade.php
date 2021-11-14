@@ -16,25 +16,27 @@
                 <div class="card-body py-4 px-5">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="{{ URL::to('/images/'. Auth::user()->avatar) }}" alt="{{ Auth::user()->avatar }}">
+                            <img src="{{ URL::to('/images/'. Auth::user()->p_picture) }}" alt="{{ Auth::user()->p_picture }}">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                            <h5 class="font-bold">{{ Auth::user()->full_name }}</h5>
                             <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br><br><br><br><br><br><hr>
+        <br><br><br><br><br><br>
         <h1>Barangay Health Worker Dashboard</h1>
+        <hr>
+        
         {{-- message --}}
         {!! Toastr::message() !!}
         <div class="page-content">
             <section class="row">
                 <div class="col-12 ">
                     <div class="row">
-                        <div class="col-6 col-lg-3 col-md-6">
+                        <div class="col-6 col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-body px-3 py-4-5">
                                     <div class="row">
@@ -51,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 col-lg-3 col-md-6">
+                        <div class="col-6 col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-body px-3 py-4-5">
                                     <div class="row">
@@ -68,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 col-lg-3 col-md-6">
+                        <div class="col-6 col-lg-4 col-md-6">
                             <div class="card">
                                 <div class="card-body px-3 py-4-5">
                                     <div class="row">
@@ -80,23 +82,6 @@
                                         <div class="col-md-8">
                                             <h6 class="text-muted font-semibold">Done Quarantine</h6>
                                             <h6 class="font-extrabold mb-0">{{ $users }}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6 col-lg-3 col-md-6">
-                            <div class="card">
-                                <div class="card-body px-3 py-4-5">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="stats-icon red">
-                                                <i class="iconly-boldBookmark"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <h6 class="text-muted font-semibold">Medicine Record</h6>
-                                            <h6 class="font-extrabold mb-0">{{ $staff }}</h6>
                                         </div>
                                     </div>
                                 </div>
@@ -251,7 +236,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="text" class="form-control" name="fullName" value="{{ Auth::user()->name }}" readonly>
+                                                            <input type="text" class="form-control" name="full_name" value="{{ Auth::user()->full_name }}" readonly>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-person"></i>
                                                             </div>
@@ -277,7 +262,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="number" class="form-control" value="{{ Auth::user()->phone_number }}" readonly>
+                                                            <input type="number" class="form-control" value="{{ Auth::user()->contactno }}" readonly>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-phone"></i>
                                                             </div>
@@ -402,18 +387,20 @@
                 <div class="card-body py-4 px-5">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="{{ URL::to('/images/'. Auth::user()->avatar) }}" alt="{{ Auth::user()->avatar }}">
+                            <img src="{{ URL::to('/images/'. Auth::user()->p_picture) }}" alt="{{ Auth::user()->p_picture }}">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                            <h5 class="font-bold">{{ Auth::user()->full_name }}</h5>
                             <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br><br><br><br><br><br><hr>
+        <br><br><br><br><br><br>
         <h1>Doctor Dashboard</h1>
+        <hr>
+        
         {{-- message --}}
         {!! Toastr::message() !!}
         <div class="page-content">
@@ -637,7 +624,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="text" class="form-control" name="fullName" value="{{ Auth::user()->name }}" readonly>
+                                                            <input type="text" class="form-control" name="full_name" value="{{ Auth::user()->full_name }}" readonly>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-person"></i>
                                                             </div>
@@ -663,7 +650,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="number" class="form-control" value="{{ Auth::user()->phone_number }}" readonly>
+                                                            <input type="number" class="form-control" value="{{ Auth::user()->contactno }}" readonly>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-phone"></i>
                                                             </div>
@@ -788,10 +775,10 @@
                 <div class="card-body py-4 px-5">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="{{ URL::to('/images/'. Auth::user()->avatar) }}" alt="{{ Auth::user()->avatar }}">
+                            <img src="{{ URL::to('/images/'. Auth::user()->p_picture) }}" alt="{{ Auth::user()->p_picture }}">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                            <h5 class="font-bold">{{ Auth::user()->full_name }}</h5>
                             <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6>
                         </div>
                     </div>
@@ -1023,7 +1010,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="text" class="form-control" name="fullName" value="{{ Auth::user()->name }}"readonly>
+                                                            <input type="text" class="form-control" name="full_name" value="{{ Auth::user()->full_name }}"readonly>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-person"></i>
                                                             </div>
@@ -1050,7 +1037,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="number" class="form-control" value="{{ Auth::user()->phone_number }}"readonly>
+                                                            <input type="number" class="form-control" value="{{ Auth::user()->contactno }}"readonly>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-phone"></i>
                                                             </div>
@@ -1175,10 +1162,10 @@
                 <div class="card-body py-4 px-5">
                     <div class="d-flex align-items-center">
                         <div class="avatar avatar-xl">
-                            <img src="{{ URL::to('/images/'. Auth::user()->avatar) }}" alt="{{ Auth::user()->avatar }}">
+                            <img src="{{ URL::to('/images/'. Auth::user()->p_picture) }}" alt="{{ Auth::user()->p_picture }}">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">{{ Auth::user()->name }}</h5>
+                            <h5 class="font-bold">{{ Auth::user()->full_name }}</h5>
                             <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6>
                         </div>
                     </div>
@@ -1382,7 +1369,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="text" class="form-control" name="fullName" value="{{ Auth::user()->name }}" readonly>
+                                                            <input type="text" class="form-control" name="full_name" value="{{ Auth::user()->full_name }}" readonly>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-person"></i>
                                                             </div>
@@ -1408,7 +1395,7 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group has-icon-left">
                                                         <div class="position-relative">
-                                                            <input type="number" class="form-control" value="{{ Auth::user()->phone_number }}" readonly>
+                                                            <input type="number" class="form-control" value="{{ Auth::user()->contactno }}" readonly>
                                                             <div class="form-control-icon">
                                                                 <i class="bi bi-phone"></i>
                                                             </div>

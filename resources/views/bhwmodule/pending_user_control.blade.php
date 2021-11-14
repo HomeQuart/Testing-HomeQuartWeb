@@ -48,8 +48,8 @@
                             @foreach ($data as $key => $item)
                                 <tr>
                                     <td class="id">{{ ++$key }}</td>
-                                    <td class="name">{{ $item->full_name }}</td>
-                                    <td class="name">
+                                    <td class="full_name">{{ $item->full_name }}</td>
+                                    <td class="full_name">
                                         <div class="avatar avatar-xl">
                                             <img src="{{ URL::to('/images/'. $item->p_picture) }}" alt="{{ $item->p_picture }}">
                                         </div>
